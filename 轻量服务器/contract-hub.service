@@ -1,0 +1,13 @@
+[Unit]
+Description=Contract Hub API
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/contract-hub
+EnvironmentFile=/opt/contract-hub/.env
+ExecStart=/opt/contract-hub/.venv/bin/uvicorn app:app --host 0.0.0.0 --port 9000
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

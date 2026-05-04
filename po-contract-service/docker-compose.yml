@@ -1,0 +1,23 @@
+services:
+  po-contract-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: po-contract-service
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      PO_CONTRACT_API_KEY: "${PO_CONTRACT_API_KEY}"
+      PO_TEMPLATE_PATH: "${PO_TEMPLATE_PATH}"
+      PO_OUTPUT_DIR: "${PO_OUTPUT_DIR}"
+      PO_OUTPUT_DISPLAY_DIR: "${PO_OUTPUT_DISPLAY_DIR}"
+      PO_TEMPLATE_SHEET: "${PO_TEMPLATE_SHEET:-Sheet1}"
+    volumes:
+      - /volume1/docker/po-contract-service:/app
+      - /volume1/Mr.SHEN/POLAGRAM/2026/6.合同&PO:/data
+    restart: unless-stopped

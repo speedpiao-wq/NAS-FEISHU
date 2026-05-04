@@ -1,0 +1,19 @@
+services:
+  contract-worker:
+    image: python:3.11-slim
+    container_name: contract-worker
+    working_dir: /app
+    command: /bin/sh -c "python worker.py"
+    env_file:
+      - .env
+    environment:
+      HUB_BASE_URL: "${HUB_BASE_URL}"
+      HUB_API_KEY: "${HUB_API_KEY}"
+      LOCAL_CONTRACT_API: "${LOCAL_CONTRACT_API}"
+      LOCAL_CONTRACT_API_KEY: "${LOCAL_CONTRACT_API_KEY}"
+      POLL_INTERVAL: "${POLL_INTERVAL:-10}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /volume1/docker/contract-worker:/app
+    restart: unless-stopped

@@ -1,0 +1,11 @@
+{
+  "style_no": "C2",
+  "po_no": "C3",
+  "price": "C4",
+  "order_date": "J2",
+  "ship_date": "J3",
+  "vendor": "J4",
+  "color": "B6",
+  "color_en": "C6",
+  "season": "H6"
+}

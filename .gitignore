@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sqlite
+
+.env
+*.env
+!*.env.example
+!*.env.sample
+
+.pycache-check/
+_upload_clean*/
+轻量服务器/contract-hub.env
+
+po-contract-service/app - 备份*.py
+NAS和轻量服务器CLI命令.txt
+飞书+轻量云+NAS.png
