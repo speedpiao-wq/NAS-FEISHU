@@ -1,0 +1,24 @@
+# 环境变量（包含密钥，不提交）
+.env
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# 输出目录（运行时生成）
+output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
