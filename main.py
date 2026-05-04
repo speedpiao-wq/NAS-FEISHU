@@ -122,7 +122,7 @@ def create_app() -> Flask:
             return jsonify({"code": 0, "msg": "生成成功", "file": filepath})
         except Exception as exc:
             logger.exception("手动生成失败: %s", exc)
-            return jsonify({"code": 500, "msg": str(exc)}), 500
+            return jsonify({"code": 500, "msg": "生成合同时发生错误，请查看服务日志"}), 500
 
     @app.get("/api/files")
     def list_files():
@@ -158,7 +158,7 @@ def _handle_bitable_event(
     except Exception as exc:
         logger.exception("处理记录 %s 时出错: %s", record_id, exc)
         try:
-            bitable_client.update_record(record_id, {"status": "生成失败", "error_msg": str(exc)})
+            bitable_client.update_record(record_id, {"status": "生成失败", "error_msg": "合同生成失败，请联系管理员查看日志"})
         except Exception:
             pass
 

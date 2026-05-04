@@ -55,9 +55,8 @@ _ALIGN_CENTER = Alignment(horizontal="center", vertical="center", wrap_text=True
 _ALIGN_LEFT = Alignment(horizontal="left", vertical="center", wrap_text=True)
 _ALIGN_RIGHT = Alignment(horizontal="right", vertical="center", wrap_text=True)
 
-# 列宽配置（单位：字符宽度）
-_COL_WIDTHS = [5, 28, 8, 10, 12, 14, 14]
-# 对应列：序号 | 商品描述 | 单位 | 数量 | 单价 | 金额 | 备注
+# 列宽配置（列索引→字符宽度）：序号 | 商品描述 | 单位 | 数量 | 单价 | 金额 | 备注
+_COL_WIDTHS: Dict[int, int] = {1: 5, 2: 28, 3: 8, 4: 10, 5: 12, 6: 14, 7: 14}
 
 
 def _apply_cell(
@@ -166,7 +165,7 @@ class ExcelGenerator:
     # ------------------------------------------------------------------
 
     def _set_column_widths(self, ws: Any) -> None:
-        for idx, width in enumerate(_COL_WIDTHS, start=1):
+        for idx, width in _COL_WIDTHS.items():
             ws.column_dimensions[get_column_letter(idx)].width = width
         ws.row_dimensions[1].height = 30
         ws.row_dimensions[2].height = 22
@@ -263,8 +262,7 @@ class ExcelGenerator:
         row += 1
 
         items: List[Dict[str, Any]] = po_data.get("items") or []
-        currency = po_data.get("currency", "CNY")
-        number_fmt = '#,##0.00' if currency == "CNY" else '#,##0.00'
+        number_fmt = '#,##0.00'
 
         total_amount = 0.0
         for idx, item in enumerate(items, start=1):

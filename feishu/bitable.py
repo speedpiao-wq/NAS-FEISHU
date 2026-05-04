@@ -61,7 +61,7 @@ def _extract_cell_value(cell: Any) -> Any:
                 parts.append(item.get("text") or item.get("name") or item.get("value") or "")
             else:
                 parts.append(str(item))
-        return "，".join(parts)
+        return ", ".join(parts)
     if isinstance(cell, dict):
         return cell.get("text") or cell.get("value") or str(cell)
     return str(cell)
